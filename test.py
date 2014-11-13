@@ -8,7 +8,7 @@ class TestSuite(unittest.TestCase):
         rethink = Rethink()
         rethink.populate()
         things = rethink.count()
-        self.failIf(things != 5)
+        self.failIf(things != 6)
 
 
 def main():
