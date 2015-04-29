@@ -1,6 +1,5 @@
 language: python
 
-
 python:
   - 2.6
   - 2.7
@@ -9,6 +8,8 @@ python:
 services:
   - rethinkdb
 
+env:
+  - secure: X7U3YsuDfBCNUyN+ODtIjOk0tJ5ygY4H8uajVNFvRHpfeFQisCz9IYwZnJi6i1hFvc03zKVlKeLaZRTHJx93Kf3dMxyNv9PAk7G8gbdGK4aEu2ZE8MFwOcubz0Kz3wqwbnntKZEKvNJa/8h6QD4mlOJaaDY2L4n17EM81Of/X3KpAwgvbzt3Jb7BRVXfADxc55qqf9JHwXD5fGL2fOpHjlt0TrtWjSvIRwy/MiP5nlf2RHzp4xMHtlg5bQk8OxDhiT1Po4cajGjJKRY3PSpRdSByvAy53nS1B1pcBKBqSvcjYCNoJtekYz0tD3mKkilMvuRjbhr48w8mMt1kH2Xv4Q== 
 
 install:
   - pip install -r requirements.txt
@@ -23,8 +24,11 @@ script:
   - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
   - which python && coverage run --branch test.py
   - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
+  - echo $test
   
 after_script:
   - cp README.md ./shippable
   
 archive: true
+
+cache: true
